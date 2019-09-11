@@ -79,7 +79,7 @@ class App extends React.Component {
     }
 
     if (className.includes("operator-button")) {
-      !value==="=" && this.setState({
+      this.setState({
         isDone: false
       })
       this.handleOperators(button)
