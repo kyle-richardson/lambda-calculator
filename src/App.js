@@ -39,6 +39,7 @@ class App extends React.Component {
       keyObject.value= '*'
     }
     if(keyObject.value==="Backspace") {
+      obj.preventDefault()
       keyObject.value= 'CE'
     }
     if(numbers.includes(keyObject.value)) {
