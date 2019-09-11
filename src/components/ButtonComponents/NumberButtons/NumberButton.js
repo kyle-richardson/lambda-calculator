@@ -4,7 +4,7 @@ const NumberButton = (props) => {
   return (
     <button 
       name ={props.number}
-      className="number-button"
+      className={props.number==="0" ? "number-button zero-button" : "number-button"}
       type='button'
       value={props.number}
       onClick={e =>props.onClick(e.target)}

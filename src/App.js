@@ -57,7 +57,7 @@ class App extends React.Component {
 
     const {value, className} = button
     
-    if(className==="number-button") {
+    if(className.includes("number-button")) {
       if(this.state.isDone) {
         this.setState({
           display: value,
@@ -69,7 +69,7 @@ class App extends React.Component {
       }
     }
 
-    if (className==="operator-button") {
+    if (className.includes("operator-button")) {
       this.setState({
         isDone: false
       })
@@ -150,11 +150,17 @@ class App extends React.Component {
     return (
       <div className="container">
         <Logo />
+        <div className="display-container"> 
+            <Display display={this.state.display} />
+        </div>
         <div className="App">
-          <Display display={this.state.display} />
-          <Specials onClick={this.handleChange}/>
-          <Numbers onClick={this.handleChange}/>
-          <Operators onClick={this.handleChange}/>
+          <div className="joined-container">
+            <Specials onClick={this.handleChange}/>
+            <Numbers onClick={this.handleChange}/>
+          </div>
+          <div className="operators-container">
+            <Operators onClick={this.handleChange}/>
+          </div>
         </div>
       </div>
     )

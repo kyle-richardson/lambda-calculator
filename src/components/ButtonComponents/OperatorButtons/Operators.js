@@ -7,7 +7,7 @@ import {operators} from "../../../data";
 const Operators = (props) => {
   const operArray = operators;
   return (
-    <div className="operators-container">
+    <div className="operators">
       {operArray.map( ele => {
         return <OperatorButton operator = {ele} onClick={props.onClick}/>
       })}

@@ -5,7 +5,6 @@ button {
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    /* padding: 8px 0px; */
     margin: 6px;
     font-size: 1.6rem;
 }
@@ -20,23 +19,49 @@ button {
 
 }
 .App {
-    /* width: 90%; */
     padding: 0px 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .number-button {
     background: darkblue;
     color: white;
+    width: 60px;
+    height: 60px;
+}
+
+.zero-button {
+    width: 130px;
+    border-radius: 32px;
 }
 
 .special-button {
     background: blue;
     color: white;
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 .operator-button {
     background: teal;
     color: white;
+}
+
+.equals-button {
+    height: 70px;
+    width: 70px;
+    margin-top: 15px;
+    font-size: 2.2rem;
+    background-color: rgb(0, 82, 82)
+}
+
+.joined-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .logo {

@@ -4,7 +4,7 @@ const OperatorButton = (props) => {
   return (
     <button 
       name={props.operator.char}
-      className="operator-button"
+      className={props.operator.char==="=" ? "operator-button equals-button" : "operator-button"}
       value={props.operator.value}
       onClick={e => props.onClick(e.target)}
     >
