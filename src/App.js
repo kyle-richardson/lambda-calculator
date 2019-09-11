@@ -5,6 +5,7 @@ import Display from "./components/DisplayComponents/Display"
 import Specials from "./components/ButtonComponents/SpecialButtons/Specials"
 import Numbers from  "./components/ButtonComponents/NumberButtons/Numbers"
 import Operators from "./components/ButtonComponents/OperatorButtons/Operators"
+import History from "./components/DisplayComponents/History"
 
 import {numbers, specials, operValues} from "./data"
 
@@ -18,12 +19,19 @@ class App extends React.Component {
     super()
     this.state = {
       display: '',
-      isDone: false
+      isDone: false,
+      history: []
     }
   }
 
   componentDidMount = () => {
     window.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  clearHistory = () => {
+    this.setState({
+      history: []
+    })
   }
 
   handleKeyDown = (obj) => {
@@ -133,10 +141,12 @@ class App extends React.Component {
 
   handleEqual = () => {
     try {
+      const result = eval(this.state.display) 
       this.setState({
-          display: (eval(this.state.display) || '' ) + "",
-          isDone: true
+          display: (result) + "",
+          isDone: true,
       })
+      this.state.history.push(this.state.display + ` = ${result}`)
     } 
     catch (e) {
 
@@ -150,20 +160,26 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Logo />
-        <div className="display-container"> 
-            <Display display={this.state.display} />
+        <div className="history-container">
+            <History history={this.state.history} clearHistory={this.clearHistory}/>
         </div>
-        <div className="App">
-          <div className="joined-container">
-            <Specials onClick={this.handleChange}/>
-            <Numbers onClick={this.handleChange}/>
+        <section className="calculator-section">
+          <Logo />
+          <div className="display-container"> 
+              <Display display={this.state.display} />
           </div>
-          <div className="operators-container">
-            <Operators onClick={this.handleChange}/>
+          <div className="App">
+            <div className="joined-container">
+              <Specials onClick={this.handleChange}/>
+              <Numbers onClick={this.handleChange}/>
+            </div>
+            <div className="operators-container">
+              <Operators onClick={this.handleChange}/>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
+        
     )
   }
 }
