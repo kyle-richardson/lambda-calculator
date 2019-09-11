@@ -4,12 +4,12 @@ import SpecialButton from "./SpecialButton"
 
 import {specials} from "../../../data";
 
-const Specials = () => {
+const Specials = (props) => {
   const specialArray = specials;
   return (
     <div className="specials-container">
       {specialArray.map( ele => {
-        return <SpecialButton char = {ele} />
+        return <SpecialButton char = {ele} onClick={props.onClick}/>
       })}
     </div>
   )

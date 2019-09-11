@@ -10,24 +10,67 @@ import Operators from "./components/ButtonComponents/OperatorButtons/Operators"
 
 import Logo from "./components/DisplayComponents/Logo";
 
-function App() {
+class App extends React.Component {
+  
+  constructor() {
+    super()
+    this.state = {
+      display: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleOperators = this.handleOperators.bind(this)
+    this.handleSpecials = this.handleSpecials.bind(this)
+  }
+
+  handleChange(button) {
+    console.log(button)
+    const {name, value} = button
+    if(name==="numberButton") {
+      this.setState({display: this.state.display+value})
+    }
+
+    if (name==="operatorButton") {
+      this.handleOperators(button)
+    }
+
+    if (name==="specialButton") {
+      this.handleSpecials(button)
+    }
+  
+    
+  }
+
+  handleOperators(button) {
+    const {name, value} = button
+    this.setState({display: this.state.display+value})
+  }
+
+  handleSpecials(button) {
+    const {name, value} = button
+    this.setState({display: this.state.display+value})
+  }
+ 
+ 
+
   // STEP 5 - After you get the components displaying using the provided data file, write your state hooks here.
   // Once the state hooks are in place write some functions to hold data in state and update that data depending on what it needs to be doing
   // Your functions should accept a parameter of the the item data being displayed to the DOM (ie - should recieve 5 if the user clicks on
   // the "5" button, or the operator if they click one of those buttons) and then call your setter function to update state.
   // Don't forget to pass the functions (and any additional data needed) to the components as props
 
-  return (
-    <div className="container">
-      <Logo />
-      <div className="App">
-        <Display />
-        <Specials />
-        <Numbers />
-        <Operators />
+  render() {
+    return (
+      <div className="container">
+        <Logo />
+        <div className="App">
+          <Display display={this.state.display} />
+          <Specials onClick={this.handleChange}/>
+          <Numbers onClick={this.handleChange}/>
+          <Operators onClick={this.handleChange}/>
+        </div>
       </div>
-    </div>
-  );
+    )
+  }
 }
 
 export default App;

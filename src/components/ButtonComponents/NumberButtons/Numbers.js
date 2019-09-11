@@ -5,12 +5,12 @@ import NumberButton from "./NumberButton"
 import {numbers} from "../../../data"
 
 
-const Numbers = () => {
+const Numbers = (props) => {
   const numArray = numbers;
   return (
     <div className="numbers-container">
       {numArray.map( ele => {
-        return <NumberButton number = {ele} />
+        return <NumberButton number = {ele} onClick={props.onClick}/>
       })}
     </div>
   );

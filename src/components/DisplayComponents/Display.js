@@ -1,7 +1,20 @@
 import React from "react";
 
-const Display = () => {
-  return <div className="display">{/* Display any props data here */}</div>;
+import App from '../../App'
+
+const Display = (props) => {
+  return (
+    <div className="display">
+      <input 
+        name="display"
+        type='text' 
+        value={props.display}
+        placeholder='Display Here' 
+        style={{textAlign: 'right'}}
+      />
+    </div>
+  )
+  
 };
 
 export default Display
