@@ -9,7 +9,7 @@ const Display = (props) => {
         name="display"
         type='text' 
         value={props.display}
-        placeholder='Display Here' 
+        placeholder='0'
         style={{textAlign: 'right'}}
       />
     </div>

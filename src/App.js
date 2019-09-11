@@ -6,6 +6,8 @@ import Specials from "./components/ButtonComponents/SpecialButtons/Specials"
 import Numbers from  "./components/ButtonComponents/NumberButtons/Numbers"
 import Operators from "./components/ButtonComponents/OperatorButtons/Operators"
 
+import {numbers, operators, specials, operValues} from "./data"
+
 // Don't forget to import any extra css/scss files you build into the correct component
 
 import Logo from "./components/DisplayComponents/Logo";
@@ -18,13 +20,41 @@ class App extends React.Component {
       display: '',
       isDone: false
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleOperators = this.handleOperators.bind(this)
-    this.handleSpecials = this.handleSpecials.bind(this)
-    this.handleEqual = this.handleEqual.bind(this)
   }
 
-  handleChange(button) {
+  componentDidMount = () => {
+    window.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  handleKeyDown = (obj) => {
+    const keyObject = {
+      value: obj.key,
+      className: ''
+    }
+    // console.log(keyObject.value)
+    if(keyObject.value==="Enter") {
+      keyObject.value= '='
+    }
+    if(keyObject.value==="x" || keyObject.value==="X" ) {
+      keyObject.value= '*'
+    }
+    if(keyObject.value==="Backspace") {
+      keyObject.value= 'CE'
+    }
+    if(numbers.includes(keyObject.value)) {
+      keyObject.className = "number-button"
+    } 
+    else if(operValues.includes(keyObject.value)) {
+      keyObject.className = "operator-button"
+    }
+    else if(specials.includes(keyObject.value)) {
+      keyObject.className = "special-button"
+    }
+    !(keyObject.className==='') && this.handleChange(keyObject)
+  }
+
+  handleChange = (button)=> {
+
     const {value, className} = button
     
     if(className==="number-button") {
@@ -53,12 +83,9 @@ class App extends React.Component {
       this.handleSpecials(button)
     }
     
-    
-  
-    
   }
 
-  handleOperators(button) {
+  handleOperators = (button)=> {
     const {value} = button
     value==="=" ? 
       this.handleEqual() : 
@@ -68,38 +95,54 @@ class App extends React.Component {
     )
   }
 
-  handleSpecials(button) {
+  handleSpecials= (button)=> {
     const {value} = button
     if(value==='C') {
       this.setState({display: ''})
     }
     if(value==='+/-') {
       this.setState({display: this.state.display*(-1)})
+      isNaN(this.state.display) && 
+        this.setState({
+          display: 'error',
+          isDone: true
+        })
     }
     if(value==='%') {
       this.setState({display: this.state.display+value})
     }
+    if(value==='CE') {
+    
+      //this doesnt seem to work with backspace 
+      //keystroke.  works with the CE button.
+      if(this.state.isDone) {
+        this.setState({
+          display: '',
+          isDone: true
+        })
+      }
+      else {
+        this.setState({
+        display: this.state.display.slice(0, -1)
+        })
+      }
+    }
     
   }
 
-  handleEqual() {
+  handleEqual = () => {
     try {
       this.setState({
-          display: (eval(this.state.display) || "" ) + "",
+          display: (eval(this.state.display) || '' ) + "",
           isDone: true
       })
-  } catch (e) {
+    } 
+    catch (e) {
 
       this.setState({
           display: "error",
           isDone: true
       })
-      // setTimeout(() =>{
-      //   this.setState({
-      //     display: ''
-      //   })
-      // }, 1000)
-
   }
   }
  

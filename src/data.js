@@ -25,7 +25,9 @@ export const operators = [
   }
 ];
 
-export const specials = ["C", "+/-", "%"];
+export const operValues = ["/", "*", "-", "+", "="]
+
+export const specials = ["C", "+/-", "%", "CE"];
 
 
 export default {numbers, operators, specials};
