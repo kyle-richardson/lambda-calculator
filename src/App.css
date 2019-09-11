@@ -1,3 +1,6 @@
+body {
+    background: rgb(18, 39, 39);
+}
 button {
     border-radius: 50%;
     width: 50px;
@@ -8,11 +11,12 @@ button {
 }
 
 .container {
-    width: 50%;
+    width: 350px;
     margin: 0 auto;
     text-align: center;
     background: darkred;
     padding: 10px 0px 30px 0px;
+    border-radius: 16px;
 
 }
 .App {
@@ -53,7 +57,7 @@ button {
     border-radius: 32px;
     height: 50px;
     padding-right: 15px;
-    background: gray;
+    background: rgb(63, 63, 63);
     color: white;
     font-size: 2rem;
 }
