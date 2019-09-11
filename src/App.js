@@ -20,7 +20,7 @@ class App extends React.Component {
     this.state = {
       display: '',
       isDone: false,
-      history: []
+      history: [],
     }
   }
 
@@ -79,7 +79,7 @@ class App extends React.Component {
     }
 
     if (className.includes("operator-button")) {
-      this.setState({
+      !value==="=" && this.setState({
         isDone: false
       })
       this.handleOperators(button)
