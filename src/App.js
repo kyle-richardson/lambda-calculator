@@ -15,7 +15,8 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      display: ''
+      display: '',
+      isDone: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleOperators = this.handleOperators.bind(this)
@@ -25,17 +26,34 @@ class App extends React.Component {
 
   handleChange(button) {
     const {value, className} = button
+    
     if(className==="number-button") {
-      this.setState({display: this.state.display+value})
+      if(this.state.isDone) {
+        this.setState({
+          display: value,
+          isDone: false
+        })
+      }
+      else {
+        this.setState({display: this.state.display+value})
+      }
     }
 
     if (className==="operator-button") {
+      this.setState({
+        isDone: false
+      })
       this.handleOperators(button)
     }
 
     if (className==="special-button") {
+      this.setState({
+        isDone: false
+      })
       this.handleSpecials(button)
     }
+    
+    
   
     
   }
@@ -44,24 +62,43 @@ class App extends React.Component {
     const {value} = button
     value==="=" ? 
       this.handleEqual() : 
-      this.setState({display: this.state.display+value}
+      this.setState({
+        display: this.state.display+value
+      }
     )
   }
 
   handleSpecials(button) {
     const {value} = button
-    this.setState({display: this.state.display+value})
+    if(value==='C') {
+      this.setState({display: ''})
+    }
+    if(value==='+/-') {
+      this.setState({display: this.state.display*(-1)})
+    }
+    if(value==='%') {
+      this.setState({display: this.state.display+value})
+    }
+    
   }
 
   handleEqual() {
     try {
       this.setState({
-          display: (eval(this.state.display) || "" ) + ""
+          display: (eval(this.state.display) || "" ) + "",
+          isDone: true
       })
   } catch (e) {
+
       this.setState({
-          display: "error"
+          display: "error",
+          isDone: true
       })
+      // setTimeout(() =>{
+      //   this.setState({
+      //     display: ''
+      //   })
+      // }, 1000)
 
   }
   }
