@@ -9,7 +9,7 @@ const Specials = (props) => {
   return (
     <div className="specials-container">
       {specialArray.map( ele => {
-        return <SpecialButton char = {ele} onClick={props.onClick}/>
+        return <SpecialButton char={ele} onClick={props.onClick}/>
       })}
     </div>
   )

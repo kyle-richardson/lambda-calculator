@@ -3,7 +3,7 @@ import React from "react";
 const NumberButton = (props) => {
   return (
     <button 
-      name ='numberButton'
+      name ={props.number}
       className="number-button"
       type='button'
       value={props.number}

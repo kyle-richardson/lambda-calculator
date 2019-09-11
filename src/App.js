@@ -20,20 +20,20 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleOperators = this.handleOperators.bind(this)
     this.handleSpecials = this.handleSpecials.bind(this)
+    this.handleEqual = this.handleEqual.bind(this)
   }
 
   handleChange(button) {
-    console.log(button)
-    const {name, value} = button
-    if(name==="numberButton") {
+    const {value, className} = button
+    if(className==="number-button") {
       this.setState({display: this.state.display+value})
     }
 
-    if (name==="operatorButton") {
+    if (className==="operator-button") {
       this.handleOperators(button)
     }
 
-    if (name==="specialButton") {
+    if (className==="special-button") {
       this.handleSpecials(button)
     }
   
@@ -41,13 +41,29 @@ class App extends React.Component {
   }
 
   handleOperators(button) {
-    const {name, value} = button
-    this.setState({display: this.state.display+value})
+    const {value} = button
+    value==="=" ? 
+      this.handleEqual() : 
+      this.setState({display: this.state.display+value}
+    )
   }
 
   handleSpecials(button) {
-    const {name, value} = button
+    const {value} = button
     this.setState({display: this.state.display+value})
+  }
+
+  handleEqual() {
+    try {
+      this.setState({
+          display: (eval(this.state.display) || "" ) + ""
+      })
+  } catch (e) {
+      this.setState({
+          display: "error"
+      })
+
+  }
   }
  
  
