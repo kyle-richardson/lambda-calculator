@@ -6,7 +6,7 @@ const SpecialButton = (props) => {
       className="special-button"
       name={props.char}
       value={props.char}
-      onClick={e => props.onClick(e.target)}
+      onClick={props.onClick}
     >
       {props.char} 
     </button>

@@ -6,7 +6,7 @@ const OperatorButton = (props) => {
       name={props.operator.char}
       className={props.operator.char==="=" ? "operator-button equals-button" : "operator-button"}
       value={props.operator.value}
-      onClick={e => props.onClick(e.target)}
+      onClick={props.onClick}
     >
       {props.operator.char}
     </button>

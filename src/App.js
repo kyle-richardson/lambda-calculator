@@ -39,7 +39,6 @@ class App extends React.Component {
       value: obj.key,
       className: ''
     }
-    // console.log(keyObject.value)
     if(keyObject.value==="Enter") {
       keyObject.value= '='
     }
@@ -59,12 +58,13 @@ class App extends React.Component {
     else if(specials.includes(keyObject.value)) {
       keyObject.className = "special-button"
     }
-    !(keyObject.className==='') && this.handleChange(keyObject)
+    !(keyObject.className==='') && this.handleChange(undefined,keyObject)
   }
 
-  handleChange = (button)=> {
-
-    const {value, className} = button
+  handleChange = (e,obj)=> {
+    let tempObj = ''
+    e ? tempObj = e.target : tempObj = obj;
+    const {value, className} = tempObj
     
     if(className.includes("number-button")) {
       if(this.state.isDone) {
@@ -82,14 +82,14 @@ class App extends React.Component {
       this.setState({
         isDone: false
       })
-      this.handleOperators(button)
+      this.handleOperators(tempObj)
     }
 
     if (className==="special-button") {
       this.setState({
         isDone: false
       })
-      this.handleSpecials(button)
+      this.handleSpecials(tempObj)
     }
     
   }
@@ -141,12 +141,13 @@ class App extends React.Component {
 
   handleEqual = () => {
     try {
+      // eslint-disable-next-line
       const result = eval(this.state.display) 
       this.setState({
           display: (result) + "",
           isDone: true,
+          history: [...this.state.history, this.state.display + ` = ${result}`]
       })
-      this.state.history.push(this.state.display + ` = ${result}`)
     } 
     catch (e) {
 
