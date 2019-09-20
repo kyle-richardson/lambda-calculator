@@ -9,9 +9,9 @@ import History from "./components/DisplayComponents/History"
 
 import {numbers, specials, operValues} from "./data"
 
-// Don't forget to import any extra css/scss files you build into the correct component
-
 import Logo from "./components/DisplayComponents/Logo";
+
+//repurposed functional component App to be class component for practice.
 
 class App extends React.Component {
   
@@ -64,6 +64,9 @@ class App extends React.Component {
     !(keyObject.className==='') && this.handleChange(undefined,keyObject)
   }
 
+  //allows 2 types of parameters, e is an event object (mouse click), 
+  //obj is a direct object with value and className added as attributes,
+  //taken from keydown window listener
   handleChange = (e,obj)=> {
     let tempObj = ''
     e ? tempObj = e.target : tempObj = obj;
@@ -112,6 +115,8 @@ class App extends React.Component {
 
   handleSpecials= (button)=> {
     const {value} = button
+
+    //clear display
     if(value==='C') {
       this.setState({display: ''})
     }
@@ -136,6 +141,8 @@ class App extends React.Component {
           isDone: true
         })
       }
+
+      //remove last input
       else {
         this.setState({
         display: this.state.display.slice(0, -1)
@@ -149,11 +156,23 @@ class App extends React.Component {
     try {
       // eslint-disable-next-line
       const result = eval(this.state.display) 
-      this.setState({
+
+      //doesnt add to history if it's just a number, nothing to eval
+      if(this.state.display!==`${result}`){
+        console.log(this.state.display, result)
+        this.setState({
           display: (result) + "",
           isDone: true,
           history: [...this.state.history, this.state.display + ` = ${result}`]
-      })
+        })
+      }
+
+      //still resets when equals is pressed, so next number will replace display
+      else {
+        this.setState({
+          isDone:true
+        })
+      }
     } 
     catch (e) {
 
