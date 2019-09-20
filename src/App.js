@@ -27,6 +27,9 @@ class App extends React.Component {
   componentDidMount = () => {
     window.addEventListener('keydown', this.handleKeyDown)
   }
+  componentWillUnmount = () => {
+    window.removeEventListener('keydown', this.handleKeyDown)
+  }
 
   clearHistory = () => {
     this.setState({
@@ -73,7 +76,10 @@ class App extends React.Component {
           isDone: false
         })
       }
-      else {
+      else if(this.state.display==='0'){
+        this.setState({display: value})
+      }
+      else{
         this.setState({display: this.state.display+value})
       }
     }
@@ -96,9 +102,9 @@ class App extends React.Component {
 
   handleOperators = (button)=> {
     const {value} = button
-    value==="=" ? 
-      this.handleEqual() : 
-      this.setState({
+    value==="=" 
+      ? this.handleEqual() 
+      : this.setState({
         display: this.state.display+value
       }
     )
