@@ -159,9 +159,8 @@ class App extends React.Component {
 
       //doesnt add to history if it's just a number, nothing to eval
       if(this.state.display!==`${result}`){
-        console.log(this.state.display, result)
         this.setState({
-          display: (result) + "",
+          display: `${result}`,
           isDone: true,
           history: [...this.state.history, this.state.display + ` = ${result}`]
         })
