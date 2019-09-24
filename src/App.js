@@ -71,6 +71,10 @@ class App extends React.Component {
     let tempObj = ''
     e ? tempObj = e.target : tempObj = obj;
     const {value, className} = tempObj
+    const replaceObj = {
+      value: value,
+      className: className
+    }
     
     if(className.includes("number-button")) {
       if(this.state.isDone) {
@@ -91,19 +95,20 @@ class App extends React.Component {
       this.setState({
         isDone: false
       })
-      this.handleOperators(tempObj)
+      this.handleOperators(replaceObj)
     }
 
     if (className==="special-button") {
       this.setState({
         isDone: false
       })
-      this.handleSpecials(tempObj)
+      this.handleSpecials(replaceObj)
     }
     
   }
 
   handleOperators = (button)=> {
+    console.log(button)
     const {value} = button
     value==="=" 
       ? this.handleEqual() 
@@ -158,7 +163,7 @@ class App extends React.Component {
       const result = eval(this.state.display) 
 
       //doesnt add to history if it's just a number, nothing to eval
-      if(this.state.display!==`${result}`){
+      if(this.state.display!==`${result}`&& this.state.display!==''){
         this.setState({
           display: `${result}`,
           isDone: true,

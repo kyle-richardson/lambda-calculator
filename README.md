@@ -129,3 +129,4 @@ Do not attempt stretch problems until MVP has been reached and a final commit ha
 - After an error displays, pressing "backspace" key will start to erase the word instead of clearing the display to 0.  Clicking "CE", however, does clear as expected.
 
 - feature missing: repeated "=" clicks to re-evaluate current result with the last operator and number sequence.  For example: 3*5=10.  Then clicking "=" again should equate to 50 (10*5=50).  Currently, it is doing nothing when "=" is pressed multiple times in a row.
+    >issues with this feature: for the design of the calculator display I decided to go with, it shows all operators and numbers in the equation before evaluating.  Usually, with those types of calculators, it does not include the feature listed above, since it cannot perform more than one operator re-evaluation on the result, so it is a bit confusing. 
