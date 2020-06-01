@@ -1,0 +1,143 @@
+body {
+    background: rgb(18, 39, 39);
+    padding-top: 40px;
+}
+button {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 6px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    border: 0;
+    box-shadow: -2px 3px 2px black;
+}
+
+.calculator-section {
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    background: darkred;
+    padding: 10px 0px 30px 0px;
+    border-radius: 16px;
+    border: 3px solid black;
+
+}
+.App {
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.history-container {
+    background: lightgray;
+    height: 100px;
+    width: 350px;
+    border-radius: 8px;
+    text-align: center;
+    overflow: scroll;
+    margin-bottom: 20px;
+    border: 3px solid black;
+}
+
+.history .history-title{
+    margin: 5px 5px 2px 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding-left: 40px;
+}
+.history span {
+    font-size: .8rem;
+    margin: 0 auto;
+}
+
+.history span p {
+    margin: 1px;
+}
+.top-history {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.clear-history {
+    margin-top: 5px;
+    font-size: .5rem;
+    border: 1px solid black;
+    width: 30px;
+    height: 20px;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 0;
+    font-style: italic;
+}
+.clear-history:active {
+    background-color: lightgray;
+}
+
+.number-button {
+    background: darkblue;
+    color: white;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+}
+
+.zero-button {
+    width: 130px;
+    border-radius: 32px;
+}
+
+.special-button {
+    background: blue;
+    color: white;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.operator-button {
+    background: teal;
+    color: white;
+}
+
+.equals-button {
+    height: 70px;
+    width: 70px;
+    margin-top: 12px;
+    font-size: 2.2rem;
+    background-color: rgb(0, 82, 82)
+}
+
+.joined-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.logo {
+    margin-bottom: 10px;
+    width: 80px;
+}
+
+.display {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.display input{
+    width: 70%;
+    border-radius: 32px;
+    height: 50px;
+    padding-right: 15px;
+    background: rgb(63, 63, 63);
+    color: white;
+    font-size: 2rem;
+    border: 3px solid black;
+}

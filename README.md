@@ -121,3 +121,12 @@ Do not attempt stretch problems until MVP has been reached and a final commit ha
 - Finish the logic so the calculator is fully functional. Feel free to change the array data, or lose it entirely, as you see fit.
 - Add some icons to improve the operator characters aesthetics. Research any icon/font library and implement it into your project.
 - Convert your CSS styling to use Sass/Scss
+
+## Known Bugs/Missing Features
+
+- Mixing key presses with button press, then finishing evaluation with "enter" key press will result in the display showing the last number pressed before "enter", yet history will reflect the fully correct equation and result.
+
+- After an error displays, pressing "backspace" key will start to erase the word instead of clearing the display to 0.  Clicking "CE", however, does clear as expected.
+
+- feature missing: repeated "=" clicks to re-evaluate current result with the last operator and number sequence.  For example: 3*5=10.  Then clicking "=" again should equate to 50 (10*5=50).  Currently, it is doing nothing when "=" is pressed multiple times in a row.
+    >issues with this feature: for the design of the calculator display I decided to go with, it shows all operators and numbers in the equation before evaluating.  Usually, with those types of calculators, it does not include the feature listed above, since it cannot perform more than one operator re-evaluation on the result, so it is a bit confusing. 
